@@ -6,19 +6,34 @@ import pyttsx3
 
 # === TTS SETUP ===
 def init_tts():
-    engine = pyttsx3.init()
-    for voice in engine.getProperty('voices'):
-        if "italian" in voice.name.lower() or "elsa" in voice.name.lower():
-            engine.setProperty('voice', voice.id)
-            break
-    engine.setProperty('rate', 150)
-    return engine
+    try:
+        engine = pyttsx3.init()
+        for voice in engine.getProperty('voices'):
+            if "italian" in voice.name.lower() or "elsa" in voice.name.lower():
+                engine.setProperty('voice', voice.id)
+                break
+        engine.setProperty('rate', 150)
+        return engine
+    except Exception as e:
+        print(f"[WARNING] TTS non disponibile: {e}")
+        return None
 
 engine = init_tts()
+tts_lock = threading.Lock()
 
 def speak(text):
-    engine.say(text)
-    engine.runAndWait()
+    if engine is None:
+        print(f"[VOICE] {text}")
+        return
+        
+    print(f"[DEBUG] Tentativo TTS: {text}")
+    try:
+        with tts_lock:
+            engine.say(text)
+            engine.runAndWait()
+        print(f"[DEBUG] TTS completato: {text}")
+    except Exception as e:
+        print(f"[TTS Error] {text} - Errore: {e}")
 
 # === UTILS ===
 def format_duration(seconds):
@@ -31,12 +46,29 @@ def current_timestamp():
 def announce_milestones(get_elapsed_time, stop_flag):
     milestone_sec = 600  # ogni 10 minuti
     milestone = 1
+    print("[DEBUG] Thread milestone avviato")
+    
     while not stop_flag.is_set():
-        time.sleep(5)
-        elapsed = get_elapsed_time()
-        if elapsed >= milestone * milestone_sec:
-            speak(f"{milestone * 10} minuti")
-            milestone += 1
+        try:
+            # Controlla stop_flag più frequentemente
+            for _ in range(10):  # 5 secondi divisi in 0.5 secondi
+                if stop_flag.is_set():
+                    print("[DEBUG] Thread milestone fermato")
+                    return
+                time.sleep(0.5)
+            
+            elapsed = get_elapsed_time()
+            
+            if elapsed >= milestone * milestone_sec:
+                print(f"[DEBUG] Annuncio milestone: {milestone * 10} minuti")
+                speak(f"{milestone * 10} minuti")
+                milestone += 1
+                
+        except Exception as e:
+            print(f"[DEBUG] Errore nel thread milestone: {e}")
+            break
+    
+    print("[DEBUG] Thread milestone terminato")
 
 # === MAIN ===
 def main():
@@ -60,7 +92,12 @@ def main():
         return 0
 
     while True:
-        cmd = input("> ").strip()
+        try:
+            cmd = input("> ").strip()
+        except KeyboardInterrupt:
+            print("\n[DEBUG] Ctrl+C rilevato")
+            milestone_stop_flag.set()
+            break
 
         # START con commento opzionale
         if cmd.lower().startswith("start"):
@@ -81,6 +118,11 @@ def main():
             total_paused = 0
             paused_times = []
 
+            # Ferma il thread precedente se esiste
+            if milestone_thread and milestone_thread.is_alive():
+                milestone_stop_flag.set()
+                milestone_thread.join(timeout=1)
+
             # Avvia il thread degli annunci vocali
             milestone_stop_flag.clear()
             milestone_thread = threading.Thread(
@@ -89,6 +131,7 @@ def main():
                 daemon=True
             )
             milestone_thread.start()
+            print("[DEBUG] Thread milestone riavviato")
 
             print(f"Cronometro avviato. Task: \"{comment}\"" if comment else "Cronometro avviato.")
 
@@ -125,6 +168,11 @@ def main():
                 print("Termina prima la pausa con 'resume'.")
                 continue
 
+            # Ferma il thread milestone
+            milestone_stop_flag.set()
+            if milestone_thread and milestone_thread.is_alive():
+                milestone_thread.join(timeout=1)
+
             end_time = time.time()
             segment_end = current_timestamp()
             duration = end_time - start_time - total_paused
@@ -151,13 +199,14 @@ def main():
             # Reset stato
             start_time = None
             paused_times = []
-            milestone_stop_flag.set()
 
         elif cmd.lower() == "exit":
             if start_time:
                 print("Segmento attivo, fermalo prima con 'stop'.")
                 continue
             milestone_stop_flag.set()
+            if milestone_thread and milestone_thread.is_alive():
+                milestone_thread.join(timeout=1)
             if segments:
                 write_csv(segments)
             print("Uscita.")
