@@ -1,0 +1,109 @@
+debug1: OpenSSH_10.0p2, OpenSSL 3.2.4 11 Feb 2025
+debug1: Reading configuration data /c/Users/saras/.ssh/config
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Connecting to 185.205.244.102 [185.205.244.102] port 22.
+debug1: fd 4 clearing O_NONBLOCK
+debug1: Connection established.
+debug1: identity file /c/Users/saras/.ssh/id_rsa type 3
+debug1: identity file /c/Users/saras/.ssh/id_rsa-cert type -1
+debug1: identity file /c/Users/saras/.ssh/id_ecdsa type -1
+debug1: identity file /c/Users/saras/.ssh/id_ecdsa-cert type -1
+debug1: identity file /c/Users/saras/.ssh/id_ecdsa_sk type -1
+debug1: identity file /c/Users/saras/.ssh/id_ecdsa_sk-cert type -1
+debug1: identity file /c/Users/saras/.ssh/id_ed25519 type -1
+debug1: identity file /c/Users/saras/.ssh/id_ed25519-cert type -1
+debug1: identity file /c/Users/saras/.ssh/id_ed25519_sk type -1
+debug1: identity file /c/Users/saras/.ssh/id_ed25519_sk-cert type -1
+debug1: identity file /c/Users/saras/.ssh/id_xmss type -1
+debug1: identity file /c/Users/saras/.ssh/id_xmss-cert type -1
+debug1: Local version string SSH-2.0-OpenSSH_10.0
+debug1: Remote protocol version 2.0, remote software version OpenSSH_8.2p1 Ubuntu-4ubuntu0.12
+debug1: compat_banner: match: OpenSSH_8.2p1 Ubuntu-4ubuntu0.12 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 185.205.244.102:22 as 'root'
+debug1: load_hostkeys: fopen /c/Users/saras/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ssh-ed25519
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: SSH2_MSG_KEX_ECDH_REPLY received
+debug1: Server host key: ssh-ed25519 SHA256:erKqZyTBBLhbC6U+g4upyhZVLkEkIIOTXR+WIyX+UVs
+debug1: load_hostkeys: fopen /c/Users/saras/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: Host '185.205.244.102' is known and matches the ED25519 host key.
+debug1: Found key in /c/Users/saras/.ssh/known_hosts:3
+debug1: ssh_packet_send2_wrapped: resetting send seqnr 3
+debug1: rekey out after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: ssh_packet_read_poll2: resetting read seqnr 3
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey in after 134217728 blocks
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_ext_info_client_parse: server-sig-algs=<ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com>
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,password
+debug1: Next authentication method: publickey
+debug1: Will attempt key: /c/Users/saras/.ssh/id_rsa ED25519 SHA256:aprrXFMWP/lEPtOz0w7+7zi0LEuwigJmiBMd05Zsgew
+debug1: Will attempt key: /c/Users/saras/.ssh/id_ecdsa 
+debug1: Will attempt key: /c/Users/saras/.ssh/id_ecdsa_sk 
+debug1: Will attempt key: /c/Users/saras/.ssh/id_ed25519 
+debug1: Will attempt key: /c/Users/saras/.ssh/id_ed25519_sk 
+debug1: Will attempt key: /c/Users/saras/.ssh/id_xmss 
+debug1: Offering public key: /c/Users/saras/.ssh/id_rsa ED25519 SHA256:aprrXFMWP/lEPtOz0w7+7zi0LEuwigJmiBMd05Zsgew
+debug1: Server accepts key: /c/Users/saras/.ssh/id_rsa ED25519 SHA256:aprrXFMWP/lEPtOz0w7+7zi0LEuwigJmiBMd05Zsgew
+Authenticated to 185.205.244.102 ([185.205.244.102]:22) using "publickey".
+debug1: channel 0: new session [client-session] (inactive timeout: 0)
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+debug1: pledge: filesystem
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: client_input_hostkeys: searching /c/Users/saras/.ssh/known_hosts for 185.205.244.102 / (none)
+debug1: client_input_hostkeys: searching /c/Users/saras/.ssh/known_hosts2 for 185.205.244.102 / (none)
+debug1: client_input_hostkeys: hostkeys file /c/Users/saras/.ssh/known_hosts2 does not exist
+debug1: Remote: /root/.ssh/authorized_keys:1: key options: agent-forwarding port-forwarding pty user-rc x11-forwarding
+debug1: Remote: /root/.ssh/authorized_keys:1: key options: agent-forwarding port-forwarding pty user-rc x11-forwarding
+debug1: Sending command: bash -s
+debug1: client_global_hostkeys_prove_confirm: server used untrusted RSA signature algorithm ssh-rsa for key 0, disregarding
+debug1: update_known_hosts: known hosts file /c/Users/saras/.ssh/known_hosts2 does not exist
+debug1: pledge: fork
+📁 Verifica file ~/.ssh/authorized_keys
+-rw------- 1 root root 97 Aug  1 17:48 /root/.ssh/authorized_keys
+📄 Contenuto authorized_keys
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM314j0fIdYkRz/JKwPIEezcxEkjVB50dqrlOWp+m2S5 saras@Ryoga-pro
+🔑 Permessi e proprietà
+  File: /root/.ssh
+  Size: 4096      	Blocks: 8          IO Block: 4096   directory
+Device: 803h/2051d	Inode: 11141129    Links: 2
+Access: (0700/drwx------)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2025-06-09 10:55:39.097977524 +0200
+Modify: 2025-08-01 17:48:40.347196898 +0200
+Change: 2025-08-01 17:48:40.347196898 +0200
+ Birth: -
+  File: /root/.ssh/authorized_keys
+  Size: 97        	Blocks: 8          IO Block: 4096   regular file
+Device: 803h/2051d	Inode: 11149179    Links: 1
+Access: (0600/-rw-------)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2025-08-01 21:13:26.367626370 +0200
+Modify: 2025-08-01 17:48:40.439196856 +0200
+Change: 2025-08-01 17:48:40.439196856 +0200
+ Birth: -
+uid=0(root) gid=0(root) groups=0(root)
+root
+🏠 Verifica home e shell utente
+debug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+root:x:0:0:root:/root:/bin/bash
+⚙️ Parametri SSH server (grep)
+#PubkeyAuthentication yes
+#PasswordAuthentication yes
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication, then enable this but set PasswordAuthentication
+debug1: channel 0: free: client-session, nchannels 1
+Transferred: sent 3272, received 4920 bytes, in 0.4 seconds
+Bytes per second: sent 7840.4, received 11789.3
+debug1: Exit status 0
