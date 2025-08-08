@@ -76,4 +76,17 @@ code --install-extension ms-vscode.remote-explorer  # Remote Explorer
 # 📂 Monta filesystem remoto via SSH (come se fosse una cartella locale)
 code --install-extension Kelvin.vscode-sshfs  # SSH FS
 
+# 🤖🤖 ANDROID STUDIO
+choco install androidstudio -y
+choco install openjdk11 -y
 
+
+choco install filezilla -y
+
+
+# guida libera nominativa ognuno di loro 83 Tariffa + 7 Diritti + 10 competenze
+
+
+choco install copyq -y
+
+# NOTA FARESCRIPT PER VSCODE OPPURE SINCRONIZZARE

@@ -1,27 +1,22 @@
+## Funzionalita da aggiungere
 
-# > start "organizzazione lavori"
-# Cronometro avviato. Task: "organizzazione lavori"
+- [ ] mettere i commenti in qualunque funzionalità
+- [ ] mettere comando info (-i) scorciatoia
+    - start "commento"  
+    - pause "commento" 
+    - resume "commento" 
+    - stop "commento"
 
-# > pause
-# Pausa attivata.
+- [ ] Tutti devono essere loggati
 
-# > resume
-# Pausa terminata.
+- [ ] sostituire la voce tts  che non funziona con delle notifiche desktop
 
-# > stop
-# Segmento 1 salvato (durata: 0:15:32)
-# Segmento max finora: 0:15:32
+- perchè le notifiche non funzionano quelle vocali
+- creare un interfaccia grafica che disegna un grafico.
 
-# > exit
-# Report salvato in: timer_report.csv
+- togliere tutte le notifiche di [DEBUG]
 
 
-# Fammi sapere se vuoi:
+- Possibilità di mettere dei commenti internamente al segmento
 
-# generare un grafico automatico a fine esecuzione (istogramma per task o durata)
-
-# esportazione in JSON
-
-# supporto multi-sessione (più giorni)
-
-# Posso estenderlo facilmente.
+durante il conteggio dei tempi

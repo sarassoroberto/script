@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import pyttsx3
 
 # === TTS SETUP ===
+
 def init_tts():
     try:
         engine = pyttsx3.init()
@@ -25,16 +26,20 @@ def speak(text):
     if engine is None:
         print(f"[VOICE] {text}")
         return
-        
-    print(f"[DEBUG] Tentativo TTS: {text}")
-    try:
-        with tts_lock:
-            engine.say(text)
-            engine.runAndWait()
-        print(f"[DEBUG] TTS completato: {text}")
-    except Exception as e:
-        print(f"[TTS Error] {text} - Errore: {e}")
-
+    
+    # Esegui TTS in un thread separato per evitare blocchi
+    def _speak_thread():
+        print(f"[DEBUG] Tentativo TTS: {text}")
+        try:
+            with tts_lock:
+                engine.say(text)
+                engine.runAndWait()
+            print(f"[DEBUG] TTS completato: {text}")
+        except Exception as e:
+            print(f"[TTS Error] {text} - Errore: {e}")
+    
+    thread = threading.Thread(target=_speak_thread, daemon=True)
+    thread.start()
 # === UTILS ===
 def format_duration(seconds):
     return str(timedelta(seconds=int(seconds)))
@@ -217,8 +222,9 @@ def main():
 
 # === CSV EXPORT ===
 def write_csv(data):
-    filename = f"timer_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
+    filename = f"timer_report_{datetime.now().strftime('%Y%m%d')}.csv"
+    with open(filename, "a", newline="", encoding="utf-8") as csvfile:
+        write_header = csvfile.tell() == 0
         fieldnames = [
             "segment_id", "start", "end", "duration_seconds", "duration_formatted",
             "task", "pause_start", "pause_end"
