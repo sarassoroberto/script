@@ -36,7 +36,8 @@ choco upgrade docker-desktop
 
 
 choco install greenshot -y
-    
+ 
+choco install composer -y   
 
 # Write-Host "✅ Installazione completata!"
 
