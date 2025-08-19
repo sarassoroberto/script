@@ -5,6 +5,8 @@ Stop-Process -Name explorer
 Start-Process explorer
 
 
+choco install 7zip.install -y
+
 # WSL - Ubuntu
 ## Assicurati di eseguire questo script come Amministratore
 wsl --install
