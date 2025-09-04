@@ -1,43 +1,32 @@
+
+# Visualizza estensioni dei file
 Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name HideFileExt -Value 0
-
-
 Stop-Process -Name explorer
 Start-Process explorer
 
 
-# Assicurati di eseguire questo script come Amministratore
+choco install 7zip.install -y
 
+# WSL - Ubuntu
+## Assicurati di eseguire questo script come Amministratore
 wsl --install
 wsl --list --verbose
 wsl --install -d Ubuntu
 wsl --update
 
+sudo apt update
+sudo apt install mysql-server
+sudo mysql_secure_installation
 
-# Installa Ubuntu (versione LTS tramite Microsoft Store)
-choco install ubuntu -y
+# Avviare MySQL: sudo systemctl start mysql
+# Controllare lo stato: sudo systemctl status mysql
+# Arrestare MySQL: sudo systemctl stop mysql
 
-# Installa Visual Studio Code
+# VSCODE
+## Installa Visual Studio Code
 choco install vscode -y
 
-# Installa Python
-choco install python -y
-
-# Installa Docker Desktop
-choco install docker-desktop -y
-
-# Installa OpenOffice
-choco install openoffice -y
-
-# Installa Firefox
-choco install firefox -y
-
-choco install docker-desktop -y
-choco upgrade docker-desktop
-
-
-choco install greenshot -y
- 
-choco install composer -y   
+## estensioni VSCODE
 
 # Write-Host "✅ Installazione completata!"
 
@@ -77,17 +66,49 @@ code --install-extension ms-vscode.remote-explorer  # Remote Explorer
 # 📂 Monta filesystem remoto via SSH (come se fosse una cartella locale)
 code --install-extension Kelvin.vscode-sshfs  # SSH FS
 
+## -------------------------------------
+
+# Installa Python
+choco install python -y
+
+# Installa Docker Desktop
+choco install docker-desktop -y
+choco upgrade docker-desktop
+
+Write-Host @"
+Apri Docker Desktop su Windows.
+
+Clicca sull'icona dell'ingranaggio (⚙️) per aprire le Settings (Impostazioni).
+
+Nel menu laterale, seleziona Resources > WSL Integration.
+
+Vedrai una lista delle tue distribuzioni WSL (ad es. Ubuntu). Abilita l'integrazione per la distribuzione che vuoi usare (sposta il cursore su "On").
+Clicca su Apply & Restart per applicare le modifiche.
+"@
+
+Pause
+
+
+
+# Installa OpenOffice
+choco install openoffice -y
+
+# Installa Firefox
+choco install firefox -y
+choco install greenshot -y
+    
+
+
 # 🤖🤖 ANDROID STUDIO
 choco install androidstudio -y
 choco install openjdk11 -y
 
-
+# filezilla
 choco install filezilla -y
-
+### TODO: import   siti in qualche modo <filezilla>
 
 # guida libera nominativa ognuno di loro 83 Tariffa + 7 Diritti + 10 competenze
+choco install ditto -yxx
 
-
-choco install copyq -y
 
 # NOTA FARESCRIPT PER VSCODE OPPURE SINCRONIZZARE
