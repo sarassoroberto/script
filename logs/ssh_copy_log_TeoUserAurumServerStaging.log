@@ -1,6 +1,0 @@
-/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/c/Users/saras/.ssh/id_rsa.pub"
-/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
-
-/usr/bin/ssh-copy-id: WARNING: All keys were skipped because they already exist on the remote system.
-		(if you think this is a mistake, you may want to use -f option)
-
